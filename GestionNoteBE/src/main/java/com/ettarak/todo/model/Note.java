@@ -19,6 +19,7 @@ public class Note implements Serializable {
     @NotNull(message = "Title of this note cannot be null")
     @NotEmpty(message = "Title of this note cannot be empty")
     private  String title;
+    @NotNull(message = "Description of this note cannot be null")
     private  String description;
     private Level level;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy hh:mm:ss")

@@ -10,5 +10,4 @@ import java.util.List;
 @Repository
 public interface NoteJpaRepository extends JpaRepository<Note, Long> {
     List<Note> findByLevel(Level level);
-    void deleteNoteById(Long id);
 }
