@@ -25,6 +25,7 @@ public class NoteResource {
     private final NoteService noteService;
     @GetMapping(path = "/all")
     public ResponseEntity<HttpResponse<Note>> getNotes() {
+
         return  ResponseEntity.ok().body(noteService.getNotes());
     }
     @PostMapping(path = "/add")
