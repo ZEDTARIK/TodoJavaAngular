@@ -6,6 +6,7 @@ import { NoteService } from './services/note.service';
 import { DataState } from './enumaration/data-state';
 import { AppState } from './interface/app-state';
 import { CustomHttpResponse } from './interface/custom-http-response';
+import { Level } from './enumaration/level';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,8 @@ import { CustomHttpResponse } from './interface/custom-http-response';
 })
 export class AppComponent implements OnInit {
   appState$: Observable<AppState<CustomHttpResponse>> | undefined;
+  readonly DataState = DataState;
+  readonly Level= Level;
 
   constructor(private noteService: NoteService) { }
 

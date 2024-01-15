@@ -5,5 +5,5 @@ export interface Note {
   title: string;
   description: string;
   level: Level;
-  createAt: Date;
+  createdAt: Date;
 }
