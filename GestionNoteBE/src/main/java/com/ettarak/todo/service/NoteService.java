@@ -11,8 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static com.ettarak.todo.utils.Utils.dateTimeFormatter;
 import static java.util.Collections.*;
@@ -30,7 +32,9 @@ public class NoteService {
         log.debug("Fetching all notes from the database");
         return HttpResponse
                 .<Note>builder()
-                .notes(noteJpaRepository.findAll())
+                .notes(noteJpaRepository.findAll()
+                            .stream().sorted(Comparator.comparing(Note::getId).reversed())
+                            .collect(Collectors.toList()))
                 .message(noteJpaRepository.count() > 0 ? noteJpaRepository.count() + " notes retrieved" : "No notes to display")
                 .status(OK)
                 .statusCode(OK.value())
@@ -43,7 +47,8 @@ public class NoteService {
         log.debug("Filtering notes By level {}", level);
         return HttpResponse
                 .<Note>builder()
-                .notes(notes)
+                .notes(notes.stream().sorted(Comparator.comparing(Note::getId).reversed())
+                            .collect(Collectors.toList()))
                 .message(notes.size() + " notes are of " + level + " importance.")
                 .status(OK)
                 .statusCode(OK.value())
