@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.time.LocalDateTime;
+import java.util.concurrent.TimeUnit;
 
 import static com.ettarak.todo.utils.Utils.dateTimeFormatter;
 
@@ -24,8 +25,8 @@ import static com.ettarak.todo.utils.Utils.dateTimeFormatter;
 public class NoteResource {
     private final NoteService noteService;
     @GetMapping(path = "/all")
-    public ResponseEntity<HttpResponse<Note>> getNotes() {
-
+    public ResponseEntity<HttpResponse<Note>> getNotes() throws InterruptedException {
+        //TimeUnit.SECONDS.sleep(1);
         return  ResponseEntity.ok().body(noteService.getNotes());
     }
     @PostMapping(path = "/add")
